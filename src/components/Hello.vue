@@ -1,11 +1,13 @@
 <template>
-  <vue-table :data="data" :actionColumn="actionColumn">
-    <vue-table-column label="id" id="id" sortType="number" :searchable="false"></vue-table-column>
-    <vue-table-column label="Age" id="age" sortType="number"></vue-table-column>
-    <vue-table-column label="Prenom" id="nom" sortType="string"></vue-table-column>
-    <vue-table-column label="wtf" id="status" sortType="string"></vue-table-column>
-    <vue-table-column label="Admin?" id="admin" sortType="number"></vue-table-column>
-  </vue-table>
+  <div class="container">
+    <vue-table :data="data" :actionColumn="actionColumn" :perPageOptions="[1,2,5]">
+      <vue-table-column label="id" id="id" sortType="number" :searchable="false"></vue-table-column>
+      <vue-table-column label="Age" id="age" sortType="number"></vue-table-column>
+      <vue-table-column label="Prenom" id="nom" sortType="string"></vue-table-column>
+      <vue-table-column label="wtf" id="status" sortType="string"></vue-table-column>
+      <vue-table-column label="Admin?" id="admin" sortType="number"></vue-table-column>
+    </vue-table>
+  </div>
 </template>
 
 <script>
@@ -26,7 +28,7 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       actionColumn: {
         title: "Actions",
-        def: [{
+        actions: [{
           text: "Edit",
           icon: "fa fa-edit",
           callback: (row) => {
@@ -134,5 +136,9 @@ li {
 
 a {
   color: #42b983;
+}
+.container {
+  width: 70%;
+  margin: auto;
 }
 </style>

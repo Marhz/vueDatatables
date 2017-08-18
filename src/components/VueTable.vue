@@ -1,11 +1,16 @@
 <template>
   <div>
-    <input type="text" @keyup="getSearch" v-model="search">
+    <div class="search">
+      <label for="search">Search :</label>
+      <input type="text" id="search" @keyup="getSearch" v-model="search">
+    </div>
     <table>
-      <tr>
-        <slot></slot>
-        <th v-if="hasAction">{{ actionColumn.title }}</th>
-      </tr>
+      <thead>
+        <tr>
+          <slot></slot>
+          <th v-if="hasAction">{{ actionColumn.title }}</th>
+        </tr>
+      </thead>
       <tbody>
         <tr v-for="row in paginatedData">
           <td v-for="{ id } in columns">
@@ -19,6 +24,9 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="emptyTable" class="vue-table__no-data">
+      No data to display
+    </div>
     <div v-if="pages > 1">
       <button @click="prevPage">prev</button>
       <button @click="nextPage">next</button>
@@ -27,9 +35,7 @@
     <div>
       <label for="">Per page :</label>
       <select v-model="perPage">
-        <option value="2">2</option>
-        <option value="4">4</option>
-        <option value="8">8</option>
+        <option v-for="num in perPageOptions" :value="num">{{ num }}</option>
       </select>
     </div>
   </div>
@@ -47,8 +53,14 @@
         type: Object,
         default() {
           return {
-            def: []
+            actions: []
           }
+        }
+      },
+      perPageOptions: {
+        type: Array,
+        default() {
+          return [2,4,8]
         }
       }
     },
@@ -60,7 +72,7 @@
         currentPage: 1,
         pages: 0,
         search: '',
-        perPage: 4
+        perPage: this.perPageOptions[0]
       }
     },
     watch: {
@@ -138,7 +150,10 @@
         return this.displayedData.slice(page - this.perPage, page);
       },
       hasAction() {
-        return this.actionColumn.def.length > 0
+        return this.actionColumn.actions.length > 0
+      },
+      emptyTable() {
+        return this.displayedData.length === 0
       }
     },
     mounted() {
@@ -148,7 +163,26 @@
 </script>
 
 <style>
+  table {
+    width: 100%;
+  }
   td {
     text-align: center;
+  }
+  tr:nth-child(even), thead {
+    background: #ececec
+  }
+  .search {
+    margin-bottom: 15px;
+    float: right;
+  }
+  .vue-table__no-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+    background: #afafaf;
+    font-size: 35px;
   }
 </style>
