@@ -126,7 +126,7 @@
         const columns = this.columns.filter(c => c.searchable);
         this.displayedData = this.data.filter((row, index) => {
           for (const column of columns) {
-            if ((""+row[column.id]).includes(this.search)) {
+            if ((""+row[column.id]).toLowerCase().includes(this.search.toLowerCase())) {
               return true;
             }
           }

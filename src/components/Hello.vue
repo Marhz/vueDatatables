@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <vue-table :data="data" :actionColumn="actionColumn" :perPageOptions="[1,2,5]">
+    <vue-table :data="data" :actionColumn="actionColumn" :perPageOptions="[3,6,9]">
       <vue-table-column label="id" id="id" sortType="number" :searchable="false"></vue-table-column>
       <vue-table-column label="Age" id="age" sortType="number"></vue-table-column>
-      <vue-table-column label="Prenom" id="nom" sortType="string"></vue-table-column>
-      <vue-table-column label="wtf" id="status" sortType="string"></vue-table-column>
+      <vue-table-column label="Name" id="name" sortType="string"></vue-table-column>
+      <vue-table-column label="Activity" id="status" sortType="string"></vue-table-column>
       <vue-table-column label="Admin?" id="admin" sortType="number"></vue-table-column>
     </vue-table>
   </div>
@@ -25,7 +25,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      data: [],
       actionColumn: {
         title: "Actions",
         actions: [{
@@ -42,8 +42,7 @@ export default {
             this. data = this.data.filter(d => d.id !== row.id)
           }
         }]
-      },
-      data: []
+      }
     }
   },
   methods: {
@@ -52,65 +51,86 @@ export default {
       this.data = [
         {
           'id': 0,
-          'nom': "test",
+          'name': "Micheal Jackson",
           'age': '65',
-          'status': "dunncare",
+          'status': "Dead",
           'admin': 0,
         },
         {
           'id': 1,
-          'nom': "gogo",
-          'age': '45',
-          'status': "yolo",
+          'name': "Palpatine",
+          'age': '100',
+          'status': "Emperor",
           'admin': 1
         },
         {
           'id': 2,
-          'nom': "lkpmlk",
+          'name': "Teemo",
           'age': '85',
-          'status': "rkgegez",
+          'status': "Cancer",
           'admin': 0
         },
         {
           'id': 3,
-          'nom': "test",
+          'name': "John doe",
           'age': '15',
-          'status': "dunncare",
+          'status': "Unknown",
           'admin': 0
         },
         {
           'id': 4,
-          'nom': "gogo",
+          'name': "Usain Bolt",
           'age': '45',
-          'status': "yolo",
+          'status': "Running",
           'admin': 1
         },
         {
           'id': 5,
-          'nom': "lkpmlk",
+          'name': "Cancer",
           'age': '85',
-          'status': "rkgegez",
+          'status': "Teemo",
           'admin': 0
         },
         {
           'id': 6,
-          'nom': "test",
+          'name': "Alan Rickman",
           'age': '15',
-          'status': "dunncare",
+          'status': "Dead",
           'admin': 0
         },
         {
           'id': 7,
-          'nom': "gogo",
+          'name': "Napoleon",
           'age': '45',
-          'status': "yolo",
+          'status': "Emperor",
           'admin': 1
         },
         {
           'id': 8,
-          'nom': "lkpmlk",
+          'name': "Daenerys Targs",
           'age': '85',
-          'status': "rkgegez",
+          'status': "Queen",
+          'admin': 0
+        },
+        {
+          'id': 9,
+          'name': "Elizabeth II",
+          'age': '85',
+          'status': "Queen",
+          'admin': 0
+        },
+        {
+          'id': 10,
+          'name': "Me",
+          'age': '1337',
+          'status': "Trash",
+          'admin': 0
+        },
+        {
+          'id': 11,
+          'name': "Darth Vader",
+          'age': '69',
+          'status': "Emperorslayer",
           'admin': 0
         },
       ]
